@@ -1,0 +1,117 @@
+---
+
+---
+
+<div id="container">
+	<body>
+		<img class="logo" src="/public/logo.svg" alt="blog logo">
+		<ul>
+			<li><a href="/">📔Inicio</a></li>
+			<li><a href="/about">📖Notas</a></li>
+			<li><a href="/contact">💻Proyectos</a></li>
+			<li><a href="/blog"> 🕹️Steam </a></li>
+			<li><a href="/projects">⚽Futbol</a></li>
+		</ul>
+	</body>
+</div>
+
+<style>
+	#container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 1rem;
+	}
+
+	.logo {
+		width: 60px;
+		height: 60px;
+	}
+
+	nav {
+		width: 100%;
+	}
+
+	ul {
+		background-color: rgb(29, 31, 36);
+		padding: 0.8rem 2rem;
+		list-style: none;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		margin: 0;
+		border-radius: 8px;
+	}
+
+	li {
+		position: relative;
+		padding: 0.5rem 2rem;
+		font-size: 0.9rem;
+		font-weight: bold;
+	}
+
+	li a {
+		transition: opacity 0.2s ease;
+	}
+
+	li a:hover {
+		opacity: 0.8;
+	}
+
+	@media (max-width: 768px) {
+		#container {
+			gap: 1.5rem;
+		}
+		
+		ul {
+			padding: 0.8rem 1rem;
+			justify-content: space-around;
+		}
+		
+		li {
+			padding: 0.5rem 0.8rem;
+			font-size: 0.75rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		#container {
+			gap: 1rem;
+			padding: 0.5rem;
+		}
+		
+		.logo {
+			width: 50px;
+			height: 50px;
+		}
+		
+		ul {
+			padding: 0.6rem 0.8rem;
+			flex-direction: column;
+			align-items: center;
+			gap: 0.5rem;
+		}
+		
+		li {
+			padding: 0.4rem 0;
+			font-size: 0.7rem;
+			text-align: center;
+		}
+	}
+
+	@media (max-width: 320px) {
+		ul {
+			gap: 0.3rem;
+		}
+		
+		li {
+			font-size: 0.65rem;
+		}
+	}
+
+</style>

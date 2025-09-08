@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/logo.svg" />
+		<title>Blog de William</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+	body {
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		display: block;
+		background-color: #2B2A31;
+		color: #ffffff;
+		margin: 3rem auto;
+		padding: 0 1rem;
+	}
+	a {
+		text-decoration: none;
+		color: #FFE395;
+	}
+
+</style>
