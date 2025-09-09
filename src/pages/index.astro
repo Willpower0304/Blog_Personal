@@ -1,8 +1,151 @@
 ---
 import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
 	<Navbar />
+
+	<div class="content">
+		<hr class="line_1">
+		<hr class="line_2">
+			<h1>EL Blog de William</h1>
+			<p>¡Hola! Bienvenid@ a mi rincón en internet. Aquí voy guardando lo que hago y aprendo en cuatro frentes: 💻 Desarrollo web (apuntes prácticos, snippets y mini-guías), 🎮 Juegos de Steam (reseñas cortas, rendimiento, mods y progreso), 🗒️ Notas personales (ideas, listas y recordatorios) y ⚽ Fútbol (análisis de partidos, tácticas y apuntes de entreno).</p>
+		<hr class="line_3">
+		<hr class="line_4">
+	</div>
+
+	<div class="post_content">
+		<h3>⌚ Publicaciones Recientes</h3>
+		<ul><li>Fecha de publicación <a href="">link del post</a></li></ul>
+		<ul><li>Fecha de publicación <a href="">link del post</a></li></ul>
+		<ul><li>Fecha de publicación <a href="">link del post</a></li></ul>
+		<p>Ver todos las <a href="">Publicaciones</a></p>
+
+		<div class="contact_content">
+			<h3>📧 Contáctame</h3>
+			<p>Si quieres ponerte en contacto conmigo o quieres saber mas sobre este blog, puedes enviarme un correo a <a href="mailto:espinozaw657@gmail.com">espinozaw657@gmail.com</a></p>
+			<hr>
+			<h3>📟 Sobre el sitio web</h3>
+			<p>Si quieres saber mas sobre el sitio web, puedes ver la página de<a href="/about"> Sobre el sitio web</a></p>
+		</div>
+	</div>
+
+	<hr class="line_5">
+
+	<Footer />
 </Layout>
+
+<style>
+	/* styles of content */
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		margin: 3rem 0;
+	}
+
+	.line_1 {
+		width: 35%;
+		margin-bottom: 0.5rem;
+		border: 2px solid white;
+	}
+	.line_2 {
+		width: 40%;
+		margin-bottom: 0.5rem;
+		border: 3px solid white;
+	}
+
+	.line_3 {
+		width: 40%;
+		margin-top: 0.5rem;
+		border: 3px solid white;
+	}
+
+	.line_4 {
+		width: 35%;
+		margin-top: 0.5rem;
+		border: 2px solid white;
+	}
+
+	h1 {
+		font-size: 2.2rem;
+		margin: 0.5rem 0;
+		color: #B9FF99;
+	}
+
+	p {
+		text-align: start;
+		font-size: 0.9rem;
+		line-height: 1.5;
+		max-width: max-content;
+		margin: 1rem 0 2rem;
+	}
+
+	@media (max-width: 768px) {
+
+		h1 {
+			font-size: 1.8rem;
+		}
+		p {
+			font-size: 0.85rem;
+			margin: 0.8rem 0 1.5rem;
+			max-width: 70ch;
+		}
+	}
+
+	@media (max-width: 480px) {
+
+		h1 {
+			font-size: 1.5rem;
+		}
+		p {
+			font-size: 0.8rem;
+			margin: 0.5rem 0 1rem;
+			max-width: 50ch;
+		}
+	}
+
+
+	/* styles of post_content */
+	.post_content h3 {
+		text-align: start;
+		color: #FF7474;
+		margin-bottom: 1rem;
+	}
+
+	.post_content ul {
+		font-size: 0.9rem;
+		line-height: 1.5;
+		max-width: 80ch;
+	}
+
+	.post_content p {
+		font-size: 0.9rem;
+		line-height: 1.5;
+		max-width: max-content;
+	}
+
+	.contact_content hr {
+		margin: 2rem auto;
+		border: 2px dotted white ;
+		max-width: 110px;
+	}
+
+	.line_5 {
+		width: 90%;
+		margin: 1rem auto;
+		border: 2px solid white;
+	}
+
+	@media (max-width: 768px) {
+
+		.post_content p, ul, li {
+		font-size: 0.85rem;
+	}
+	}
+
+</style>

@@ -4,7 +4,7 @@
 
 <div id="container">
 	<body>
-		<img class="logo" src="/public/logo.svg" alt="blog logo">
+		<img class="logo" src="/logo.svg" alt="blog logo">
 		<ul>
 			<li><a href="/">📔Inicio</a></li>
 			<li><a href="/about">📖Notas</a></li>
@@ -25,7 +25,6 @@
 		width: 100%;
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 1rem;
 	}
 
 	.logo {
@@ -39,13 +38,16 @@
 
 	ul {
 		background-color: rgb(29, 31, 36);
-		padding: 0.8rem 2rem;
+		padding: 0.8rem 1rem;
 		list-style: none;
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
 		margin: 0;
-		border-radius: 8px;
+	}
+
+	a:hover {
+		text-decoration: none;
 	}
 
 	li {
