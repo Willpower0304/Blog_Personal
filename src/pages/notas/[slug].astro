@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, getEntryBySlug } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('notas', ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true
+  );
+  return entries.map((e) => ({ params: { slug: e.slug } }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntryBySlug('notas', slug!);
+if (!entry) throw new Error(`Nota no encontrada: ${slug}`);
+
+const { Content } = await entry.render();
+const data = entry.data;
+
+const fecha = new Date(data.pubDate).toLocaleString('es-PA', {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+  hour12: false,
+  timeZone: 'America/Panama',
+});
+---
+
+<Layout title={`${data.title} · Notas`} description={data.description}>
+  <Navbar />
+  <article class="post">
+    <h1>{data.title}</h1>
+    <p class="meta">{fecha} · #{data.tag}</p>
+    {data.img && <img class="cover" src={data.img} alt={data.title} loading="lazy" />}
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+  <Footer />
+</Layout>
