@@ -2,6 +2,20 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const all = await getCollection('notas', ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true
+);
+
+function fmtFecha(d: Date) {
+  return new Intl.DateTimeFormat('es-PA', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'America/Panama',
+  }).format(d);
+}
 ---
 
 <Layout>
@@ -18,9 +32,15 @@ import Layout from '../layouts/Layout.astro';
 
 	<div class="post_content">
 		<h3>⌚ Publicaciones Recientes</h3>
-		<ul><li>Fecha de publicación <a href="">link del post</a></li></ul>
-		<ul><li>Fecha de publicación <a href="">link del post</a></li></ul>
-		<ul><li>Fecha de publicación <a href="">link del post</a></li></ul>
+			{all.map((post) => (
+				<div id={post.slug}>
+				<p class="meta"> ➡︎ {fmtFecha(post.data.pubDate)}</p>
+				<a class="card" href={`/notas/${post.slug}/`}>
+					<p>{post.data.title}</p>
+				</a>
+				</div>
+			))}
+
 		<p>Ver todos las <a href="">Publicaciones</a></p>
 
 		<div class="contact_content">
