@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+title: "Pagina No Encontrada"
+---
+
+<Layout>
+    <div class="error">
+        <h1>404 </h1>
+        <p><strong>Whoops!</strong></p>
+        <p>Lo sentimos, pero la página que buscas no se encuentra disponible en este momento.</p>
+        <a href="/">Vuelve al Inicio</a>
+    </div>
+    
+</Layout>
+
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;            
+        max-width: 100%;   
+    }
+
+    h1 {
+        font-size: 6rem;
+        color: #FF7474;
+        margin-bottom: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    a {
+        text-decoration: none;
+        margin-top: 2rem;
+        padding: 1rem 3rem;
+        border: 2px solid rgb(117, 117, 117);
+        color: rgb(117, 117, 117);
+        transition: all 0.5s ease-in-out;
+    }
+
+    a:hover {
+        color: #FF7474;
+        border-color: #FF7474;
+    }
+
+
+
+    .error {     
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;     
+        height: 100vh;           
+        text-align: center;      
+        padding: 0 1rem;         
+        box-sizing: border-box; 
+        margin: 0;              
+    }
+
+</style>
+
+
