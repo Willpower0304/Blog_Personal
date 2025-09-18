@@ -42,7 +42,18 @@ const fecha = fmtYYYYMMDD_HHMM(data.pubDate);
     <h1>{data.title}</h1>
     <hr class="line">
     <p class="description">{data.description}</p>
-    {data.img && <img class="cover" src={data.img} alt={data.title} loading="lazy" />}
+    {data.img && (
+    <img
+        class="cover"
+        src={data.img}
+        alt={data.title}
+        width={data.imgWidth}
+        height={data.imgHeight}
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+     )}
     <div class="post-footer">
       <p class="meta">Publicado - <span>{fecha}</span></p>
       <p class="tag">Etiqueta: #<span>{data.tag}</span></p>

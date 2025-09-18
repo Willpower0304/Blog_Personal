@@ -1,0 +1,109 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+
+const all = await getCollection('steam', ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true
+);
+const posts = all.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+function fmtFecha(d: Date) {
+  return new Intl.DateTimeFormat('es-PA', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'America/Panama',
+  }).format(d);
+}
+---
+
+<Layout>
+  <Navbar />
+
+    <div class="content">
+      <h3>Steam  🕹️</h3>
+      <p>En este espacio comparto mis opiniones sobre juegos de Steam, con reseñas breves pero claras y análisis más profundos cuando el título lo merece. Me enfoco en jugabilidad, rendimiento en PC, relación calidad–precio y accesibilidad.</p>
+
+      <section class="grid">
+        {posts.map((p) => (
+          <div class="grid-item">
+            <p class="meta"> ➡︎ {fmtFecha(p.data.pubDate)}</p>
+            <a class="card" href={`/steam/${p.slug}/`}>
+              <p>{p.data.title}</p>
+            </a>
+          </div>
+        ))}
+        {posts.length === 0 && <p class="muted">No hay notas aún.</p>}
+      </section>
+    </div>
+    
+
+  <Footer />
+</Layout>
+
+<style>
+  .content {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin: 3rem 0;
+  }
+
+  .content h3 {
+    text-align: start;
+		color: #FF7474;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .content p {
+		line-height: 1.5;
+		max-width: max-content;
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 1rem 0;
+  }
+
+  .grid-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  	@media (max-width: 768px) {
+
+    .content h3 {
+      font-size: 1.3rem;
+    }
+
+    .content p {
+		  font-size: 0.9rem;
+   }
+
+	}
+
+	@media (max-width: 480px) {
+
+    .content h3 {
+      font-size: 1.1rem;
+    }
+
+    .content p {
+      font-size: 0.8rem;
+    }
+
+    .grid-item p { 
+      font-size: 0.7rem;
+    }
+	}
+
+</style>
+

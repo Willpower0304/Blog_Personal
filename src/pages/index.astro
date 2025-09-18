@@ -4,10 +4,14 @@ import Footer from '../components/Footer.astro';
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const all = await getCollection('notas', ({ data }) =>
-  import.meta.env.PROD ? !data.draft : true
+const [notas, steam] = await Promise.all([
+  getCollection('notas', ({ data }) => import.meta.env.PROD ? !data.draft : true),
+  getCollection('steam', ({ data }) => import.meta.env.PROD ? !data.draft : true),
+]);
+
+const posts = [...notas, ...steam].sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
-const posts = all.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 function fmtFecha(d: Date) {
   return new Intl.DateTimeFormat('es-PA', {
@@ -34,11 +38,11 @@ function fmtFecha(d: Date) {
 	<div class="post_content">
 		<h3>⌚ Publicaciones Recientes</h3>
 		<div class="render_post">
-			{all.map((posts) => (
-				<div id={posts.slug}>
-					<p class="meta"> ➡︎ {fmtFecha(posts.data.pubDate)}</p>
-					<a class="card" href={`/notas/${posts.slug}/`}>
-						<p>{posts.data.title}</p>
+			{posts.map((post) => (
+				<div id={`${post.collection}-${post.slug}`}>
+					<p class="meta"> ➡︎ {fmtFecha(post.data.pubDate)}</p>
+					<a class="card" href={`/${post.collection}/${post.slug}/`}>
+						<p>{post.data.title}</p>
 					</a>
 				</div>
 			))}
