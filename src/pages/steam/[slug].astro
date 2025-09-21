@@ -18,74 +18,28 @@ if (!entry) throw new Error(`Nota no encontrada: ${slug}`);
 const { Content } = await entry.render();
 const data = entry.data;
 
-function fmtYYYYMMDD_HHMM(d: Date) {
-  const parts = new Intl.DateTimeFormat('en-CA', {
-    year: 'numeric',
-    month: '2-digit',
+function fmtFecha(d: Date) {
+  return new Intl.DateTimeFormat('es-PA', {
     day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
+    month: 'long',
+    year: 'numeric',
     timeZone: 'America/Panama',
-  }).formatToParts(d);
-  const get = (t: string) => parts.find(p => p.type === t)?.value || '';
-  return `${get('year')}-${get('month')}-${get('day')} ${get('hour')}:${get('minute')}`;
+  }).format(d);
 }
 
-const fecha = fmtYYYYMMDD_HHMM(data.pubDate);
+const fecha = fmtFecha(data.pubDate);
 ---
 
 <Layout title={`${data.title} · steam`} description={data.description}>
   <Navbar />
       <section class="markdown">
         <Content />
+        <div class="post-footer">
+          <p>Publicado: <span>{fecha}</span></p>
+          <p>Etiqueta: #<span>{data.tag}</span></p>
+        </div>
       </section>
   <Footer />
 </Layout>
 
-<style>
 
-.markdown p { margin: 1rem 0; }
-
-.markdown a {
-  color: #FFE395;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.markdown ul, .markdown ol {
-  margin: 1rem 0 1rem 1.25rem;
-}
-.markdown li { margin: 0.4rem 0; }
-
-.markdown blockquote {
-  margin: 1.5rem 0;
-  padding: 0.75rem 1rem;
-  border-left: 4px solid #FFE395;
-  background: rgba(255, 227, 149, 0.08);
-  border-radius: 0.25rem;
-  font-style: italic;
-}
-
-.markdown code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  background: #1f1f1f;
-  padding: 0.12rem 0.35rem;
-  border-radius: 0.25rem;
-}
-.markdown pre {
-  background: #131313;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  overflow: auto;
-}
-.markdown pre code { background: transparent; padding: 0; }
-
-.markdown img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 1rem auto;
-  border-radius: 0.5rem;
-}
-</style>
