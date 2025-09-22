@@ -30,10 +30,11 @@ function fmtFecha(d: Date) {
       <section class="grid">
         {posts.map((p) => (
           <div class="grid-item">
-            <p class="meta"> ➡︎ {fmtFecha(p.data.pubDate)}</p>
-            <a class="card" href={`/notas/${p.slug}/`}>
-              <p>{p.data.title}</p>
-            </a>
+            <p class="meta"> ➡︎ {fmtFecha(p.data.pubDate)} 
+              <a class="card" href={`/notas/${p.slug}/`}>
+                {p.data.title}
+              </a>
+            </p>
           </div>
         ))}
         {posts.length === 0 && <p class="muted">No hay notas aún.</p>}
@@ -75,7 +76,7 @@ function fmtFecha(d: Date) {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   	@media (max-width: 768px) {

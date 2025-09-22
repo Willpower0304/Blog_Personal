@@ -30,10 +30,11 @@ function fmtFecha(d: Date) {
       <section class="grid">
         {posts.map((p) => (
           <div class="grid-item">
-            <p class="meta"> ➡︎ {fmtFecha(p.data.pubDate)}</p>
-            <a class="card" href={`/steam/${p.slug}/`}>
-              <p>{p.data.title}</p>
-            </a>
+            <p class="meta"> ➡︎ {fmtFecha(p.data.pubDate)} 
+              <a class="card" href={`/steam/${p.slug}/`}>
+                {p.data.title}
+              </a>
+            </p>
           </div>
         ))}
         {posts.length === 0 && <p class="muted">No hay notas aún.</p>}

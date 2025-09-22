@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+    <Navbar/>
+
+    <div class="content">
+        <h1>📁 Sobre el sitio web</h1>
+        <hr>
+        <p>Este sitio es mi cuaderno público: un lugar donde voy guardando lo que hago y aprendo. Aquí encontrarás desarrollo web, reseñas y primeras impresiones de juegos de Steam con enfoque en rendimiento en PC y mods útiles, notas personales para ideas y enlaces rápidos, y análisis sencillos de fútbol con momentos clave y lecciones tácticas. 
+        <br>
+        <br>
+        El contenido se organiza en colecciones  y la portada muestra lo más reciente de todo; cada entrada puede traer portada, fecha y etiqueta. Escribo corto y al grano cuando basta, o largo con ejemplos cuando vale la pena, y actualizo los posts si mejoran con el tiempo. 
+        
+        <br>
+        <br>
+        <h2>⚙️ Tecnologías Utilizadas</h2>
+        <hr>
+        <p>Técnicamente está hecho con Astro y Markdown, cuidando el rendimiento (imágenes optimizadas con dimensiones definidas, WebP/AVIF cuando conviene) y mostrando las fechas en zona horaria de Panamá; el estilo es simple para leer cómodo en móvil y desktop. No recojo datos personales ni uso formularios invasivos; los enlaces externos son a tu criterio y, si algo rompe, lo corrijo cuando me avises. Si quieres comentar, corregir o proponer temas.</p>
+        <div class="own_testimonial">
+            <img class="logo" src="/logo.svg" alt="blog logo">
+            <p>Hecho por William Espinoza, espero que te guste el contenido que encuentres aqui.</p>
+        </div>
+    </div>
+
+    <Footer/>
+</Layout>
+
+<style>
+    .content {
+        margin: 3rem auto;
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+    }
+
+    .content h1 {
+        color: #FF7474;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .content h2 {
+        color: #FFE395;
+        font-size: 1.2rem;
+        margin: 1rem 0;
+    }
+
+    .content hr {
+        border: none;
+		border-top: 1px solid #4e4e4e;
+		margin: 0 0 2rem;
+    }
+
+    .content .own_testimonial {
+        font-style: italic;
+        color: #797979;
+        max-width: 50ch;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem auto;
+        border: 1px solid #353535;
+        box-shadow:  -1px 3px 0px 0px rgba(32, 32, 32, 0.75);
+        padding: 1rem 2rem;
+        border-radius: 30rem;
+    }
+
+    .content .logo {
+        width: 50px;
+        height: 50px;
+        margin-right: 1rem;
+    }
+</style>

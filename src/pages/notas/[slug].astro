@@ -18,97 +18,28 @@ if (!entry) throw new Error(`Nota no encontrada: ${slug}`);
 const { Content } = await entry.render();
 const data = entry.data;
 
-function fmtYYYYMMDD_HHMM(d: Date) {
-  const parts = new Intl.DateTimeFormat('en-CA', {
-    year: 'numeric',
-    month: '2-digit',
+function fmtFecha(d: Date) {
+  return new Intl.DateTimeFormat('es-PA', {
     day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
+    month: 'long',
+    year: 'numeric',
     timeZone: 'America/Panama',
-  }).formatToParts(d);
-  const get = (t: string) => parts.find(p => p.type === t)?.value || '';
-  return `${get('year')}-${get('month')}-${get('day')} ${get('hour')}:${get('minute')}`;
+  }).format(d);
 }
 
-const fecha = fmtYYYYMMDD_HHMM(data.pubDate);
+const fecha = fmtFecha(data.pubDate);
 ---
 
 <Layout title={`${data.title} · Notas`} description={data.description}>
   <Navbar />
 
-  <article class="post">
-    <h1>{data.title}</h1>
-    <hr class="line">
-    <p class="description">{data.description}</p>
-    {data.img && (
-    <img
-        class="cover"
-        src={data.img}
-        alt={data.title}
-        width={data.imgWidth}
-        height={data.imgHeight}
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-     )}
-    <div class="post-footer">
-      <p class="meta">Publicado - <span>{fecha}</span></p>
-      <p class="tag">Etiqueta: #<span>{data.tag}</span></p>
-    </div>
-    <br>
-    <hr class="line">
-  </article>
-
+  <section class="markdown">
+        <Content />
+        <div class="post-footer">
+          <p>Publicado: <span>{fecha}</span></p>
+          <p>Etiqueta: #<span>{data.tag}</span></p>
+        </div>
+      </section>
   <Footer />
 </Layout>
 
-<style>
-  .post {
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-    margin: 3rem 0;
-  }
-
-  .post h1 {
-    font-size: 2rem;
-    text-align: start ;
-    color: #FF7474;
-    margin-bottom: 1rem;
-  }
-
-  .post .line {
-    width: 100%;
-    margin-bottom: 0.5rem;
-    border: 1px solid rgb(61, 61, 61);
-  }
-
-  .post .description {
-    margin: 0.5rem 0 2rem;
-  }
-
-  .post .cover {
-    display: flex;
-    margin: 0 auto;
-    width: 50%;
-  }
-
-  .post .post-footer {
-    display: flex;
-    flex-direction: column;
-    margin-top: 2rem;
-    color: #FFE395;
-  }
-
-  .meta, .tag {
-    color: #fff; 
-  }
-
-  .meta span, .tag span {
-    color: #FFE395; 
-  }
-
-</style>
