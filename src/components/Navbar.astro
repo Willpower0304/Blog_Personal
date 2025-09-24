@@ -5,6 +5,8 @@
 <div id="container">
 	<body>
 		<img class="logo" src="/logo.svg" alt="blog logo">
+		<input type="checkbox" id="nav-toggle" hidden>
+  	<label class="hamburger" for="nav-toggle" aria-label="Abrir menú"><span></span></label>
 		<ul>
 			<li><a href="/">📔Inicio</a></li>
 			<li><a href="/notas">📖Notas</a></li>
@@ -82,38 +84,97 @@
 	}
 
 	@media (max-width: 480px) {
-		#container {
-			gap: 1rem;
+		 #container {
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
 			padding: 0.5rem;
+			min-height: 56px; 
+			z-index: 40;
 		}
-		
+
 		.logo {
 			width: 50px;
 			height: 50px;
 		}
-		
-		ul {
-			padding: 0.6rem 0.8rem;
-			flex-direction: column;
-			align-items: center;
-			gap: 0.5rem;
-		}
-		
-		li {
-			padding: 0.4rem 0;
-			font-size: 0.7rem;
-			text-align: center;
-		}
-	}
 
-	@media (max-width: 320px) {
-		ul {
-			gap: 0.3rem;
+		.hamburger {
+			width: 36px;
+			height: 28px;
+			position: relative;
+			cursor: pointer;
+			z-index: 41; 
 		}
-		
-		li {
-			font-size: 0.65rem;
+
+		.hamburger span,
+		.hamburger::before,
+		.hamburger::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			height: 4px;
+			background: #fff;
+			border-radius: 2px;
+			transition: transform 200ms ease, opacity 200ms ease;
 		}
-	}
+
+		.hamburger::before { top: 0; }
+		.hamburger span { top: 50%; transform: translateY(-50%); }
+		.hamburger::after { bottom: 0; }
+
+		 ul {
+			position: absolute;
+			top: 6px; 
+			left: 1;
+			right: 0;
+			background: rgb(29,31,36);
+			border-top: 1px solid rgba(255,255,255,0.08);
+			display: flex;
+			flex-direction: column;
+			padding: 0.8rem 1rem;
+			gap: 1rem;
+			z-index: 30;
+			width: 60%;
+			transform: translateY(-20px);
+			opacity: 0;
+			pointer-events: none;
+			transition: transform 200ms ease, opacity 200ms ease;
+		}
+
+		 li {
+			padding: 0.5rem 1rem;
+			font-size: 0.95rem;
+			text-align: left;
+			
+		}
+		li:last-child { border-bottom: 0; }
+		li a { display: block; }
+
+		#nav-toggle:checked ~ ul {
+			transform: translateY(0);
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		 #nav-toggle:checked ~ .hamburger::before {
+			transform: translateY(10.5px) rotate(45deg);
+		}
+		#nav-toggle:checked ~ .hamburger::after {
+			transform: translateY(-13.5px) rotate(-45deg);
+		}
+		#nav-toggle:checked ~ .hamburger span {
+			opacity: 0;
+			transform: translateY(-50%) scaleX(0);
+		}
+
+		#container a {
+			width: max-content;
+		}
+
+		}
+ 
 
 </style>
